@@ -20,7 +20,10 @@
   "homepage": "https://github.com/koopjs/koop-output-wms#readme",
   "dependencies": {
     "@mapbox/geojson-mapnikify": "^3.0.1",
-    "mapnik": "3.x || 4.x"
+    "geojson-bbox": "0.0.0",
+    "mapnik": "3.x || 4.x",
+    "proj4": "^2.8.0",
+    "utm": "^1.1.1"
   },
   "devDependencies": {
     "buble": "^0.19.3",

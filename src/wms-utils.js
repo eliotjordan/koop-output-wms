@@ -1,4 +1,5 @@
 const util = require('util')
+const proj4 = require('proj4')
 
 /**
  * Normalize and range check input dimensions
@@ -48,4 +49,16 @@ function isPng (data) {
   data[6] === 0x1A && data[7] === 0x0A
 }
 
-module.exports = { normalizeDimension, normalizeBbox, isPng }
+function degrees2meters (lon, lat) {
+  const fromProj = proj4.defs('EPSG:4326')
+  const toProf = proj4.defs('EPSG:3857')
+
+  return proj4(fromProj, toProf, [lon, lat])
+
+  // const x = lon * 20037508.34 / 180
+  // let y = Math.log(Math.tan((90 + lat) * Math.PI / 360)) / (Math.PI / 180)
+  // y = y * 20037508.34 / 180
+  // return [x, y]
+}
+
+module.exports = { normalizeDimension, normalizeBbox, isPng, degrees2meters }
